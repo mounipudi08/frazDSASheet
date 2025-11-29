@@ -1,0 +1,48 @@
+1)Write a C++ program to input amount from user and print minimum number of notes (Rs. 500, 100, 50, 20, 10, 5, 2, 1) required for the amount.
+567890
+Total Number of Notes
+500 = 1135
+100 = 3
+50 = 1
+20 = 2
+10 = 0
+5 = 0
+2 = 0
+1 = 0
+1st Approach (my own)
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		List<Integer> notes = Arrays.asList(500, 100, 50, 20, 10, 5, 2, 1);
+		List<Integer> value = new ArrayList<>();
+		int amount;
+		for(Integer note:notes){
+			System.out.println(note);
+			amount = n/note;
+			n = n%note;
+			value.add(amount);
+            System.out.println("used" + note + " "+ "notes" + " "+ amount);
+			}
+			System.out.println(value);
+2nd Approach 
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] notes = {500, 100, 50, 20, 10, 5, 2, 1};
+		int[] count = new int[8];
+		int amount;
+		for(int i=0;i<notes.length;i++){
+			count[i] = n/notes[i];
+			n = n%notes[i];
+		}
+		for(int i=0;i<notes.length;i++){
+			System.out.println(notes[i] + " = "+ count[i]);
+		}	
+	}
+}
+
