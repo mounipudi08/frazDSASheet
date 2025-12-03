@@ -332,4 +332,38 @@ public class Main {
         System.out.println(count);
     }
 }
+import java.util.*;
+public class Main {
+	public static int squareroot(int n){
+		int near = 0;
+        for(int i=1;i*i<=n;i++){
+			near = i;
+		}
+		return near;
+	}
+10)Write a program in C++ to input a number and check whether the number is prime number or not using for loop.
+
+	public static boolean primeNumber(int n,int square){
+		if(n <= 1) return false;// 0 and 1 are not a prime 
+		for(int i=2;i<=square;i++){
+		 if(n%i == 0){
+		    return false;
+		 }
+		}
+		return true;
+	 }
+	public static void main(String[] args) {
+		// write your code here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int square = squareroot(n);
+		if(primeNumber(n,square) == true){
+         System.out.println(n + " Is a prime number");
+		}
+		else {
+         System.out.println(n + " Is not a prime number");
+		}
+	}
+}
+
 
