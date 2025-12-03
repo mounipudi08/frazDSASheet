@@ -615,4 +615,95 @@ public class Main {
         }
     }
 }
+13) Write a C++ program to input two numbers from user and find LCM (Lowest Common Multiple).
+1 Approach) I wrote this logic 
+for (int i = 1; i <= b; i++) { if (a * i % b == 0) { return a * i; } } -- O(b)
+for (int i = 1; i <= Math.min(a, b); i++) { --O(min(a,b)
+    if (a * i % b == 0) {
+        return a * i;
+    }
+}
+2nd approach 
+import java.util.*;
+public class Main {
+	 public static int lcm(int a ,int b) {
+		int max;
+		if(a > b){
+			max = a;
+		}
+		else {
+			max = b;
+		}
+        int i = max;
+		while(true){
+          if(i % a  == 0 && i % b  == 0 ) {
+			return i;
+		  }
+		  i = i + max;
+		}
+	 }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println(lcm(a,b));	
+	}
+} -- O(LCM/max(a,b))
+3 rd approach 
+ int lcm = Math.max(a, b);
 
+        // Only increase by the max value → faster
+        while (lcm % a != 0 || lcm % b != 0) {
+            lcm += Math.max(a, b);
+        }
+ime Complexity — NOT O(a × b)
+The loop does not run a * b times.
+
+You increment like this:
+
+lcm = max,  
+max*2,  
+max*3,  
+max*4, ...
+
+
+So the number of iterations ≈ LCM / max.
+
+🎯 Complexity = O(LCM / max(a, b))
+
+Let:
+
+LCM(a, b) = Least Common Multiple
+
+max = maximum(a, b)
+
+Then number of iterations is:
+
+[
+
+\text{iterations} = \frac{LCM(a,b)}{\max(a,b)}
+]
+4th approach (Optimized)
+
+
+
+14) Write a C++ program to input two numbers from the user and find HCF (Highest Common Factor) / GCD (Greatest Common Divisor).
+import java.util.*;
+public class Main {
+	 public static int hcf(int a ,int b) {
+		int temp ;
+		while(b != 0) {
+	    temp = a%b;
+		a = b;
+		b = temp;
+		System.out.println(a + " " + b);
+		}
+		return a;
+	 }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println(hcf(a,b));	
+	}
+}
