@@ -365,5 +365,254 @@ public class Main {
 		}
 	}
 }
+11)Write a C++ program to print all Prime numbers between 1 to n using loop
+import java.util.*;
+public class Main {
+	public static boolean primeNumber(int n,int square){
+		if(n <= 1) return false;// 0 and 1 are not a prime 
+		for(int i=2;i<=square;i++){
+		 if(n%i == 0){
+		    return false;
+		 }
+		}
+		return true;
+	 }
+	public static void main(String[] args) {
+		// write your code here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		for(int i=1;i<=n;i++){
+		   int square = (int) Math.sqrt(i);
+           if(primeNumber(i,square) == true){
+             System.out.println(i);
+		   }
+		}
+	}
+}
+12)Write a C++ program to input a number from user and find Prime factors of the given number using loop.
 
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        System.out.println("Prime factors of " + n + " are:");
+
+        // Check divisibility by 2
+        while (n % 2 == 0) {
+            System.out.println(2);
+            n /= 2;
+        }
+
+        // Check odd numbers from 3 to sqrt(n)
+        for (int i = 3; i * i <= n; i += 2) {
+            while (n % i == 0) {
+                System.out.println(i);
+                n /= i;
+            }
+        }
+
+        // Whatever is left > 2 must be a prime
+        if (n > 2) {
+            System.out.println(n);
+        }
+    }
+}
+Sure! I’ll explain the **optimized prime factor logic** step-by-step using **24** and **48** so you understand **why every step is needed**.
+
+---
+
+# ⭐ First, understand the Goal
+
+Prime factors = break the number into **only prime numbers** multiplied together.
+
+Examples:
+24 → 2 × 2 × 2 × 3
+48 → 2 × 2 × 2 × 2 × 3
+
+---
+
+# ⭐ Now let’s go step-by-step through the optimized method
+
+### 🔥 Step 1: Remove all factors of **2** first
+
+Why?
+Because **2 is the only even prime**.
+If we divide out all 2’s now, the remaining number becomes **odd**.
+→ This reduces our loop by **half** (no need to check evens).
+
+---
+
+# ⭐ Example 1: Take **24**
+
+### Step 1 — Remove all 2's
+
+```
+24 % 2 == 0 → print 2 → n = 12  
+12 % 2 == 0 → print 2 → n = 6  
+6 % 2 == 0 → print 2 → n = 3  
+3 % 2 != 0 → stop
+```
+
+So far prime factors:
+
+```
+2
+2
+2
+```
+
+Now **n = 3** (odd)
+
+---
+
+### Step 2 — Loop from 3 to √n (only odd numbers)
+
+√3 is approx 1.7 → no loop needed
+Anything left > 2 is prime:
+
+```
+3 > 2 → print 3
+```
+
+Final factors of 24:
+
+```
+2
+2
+2
+3
+```
+
+---
+
+# ⭐ Example 2: Take **48**
+
+### Step 1 — Remove all factors of 2
+
+```
+48 % 2 = 0 → print 2 → n = 24
+24 % 2 = 0 → print 2 → n = 12
+12 % 2 = 0 → print 2 → n = 6
+6 % 2 = 0 → print 2 → n = 3
+3 % 2 != 0 → stop
+```
+
+Printed so far:
+
+```
+2
+2
+2
+2
+```
+
+### Step 2 — Check odd numbers from 3 to √n
+
+√3 = 1.7 → loop exits
+Remaining number is:
+
+```
+3 > 2 → print 3
+```
+
+Final factors of 48:
+
+```
+2
+2
+2
+2
+3
+```
+
+---
+
+# ⭐ Now, Why does the algorithm use these steps?
+
+### ✔ Step 1:
+
+```java
+while (n % 2 == 0) {
+    print 2;
+    n /= 2;
+}
+```
+
+**Reason:**
+Removing 2's first makes the number **odd** → reduces loop workload by 50%.
+No need to check even numbers later because only 2 is even prime.
+
+---
+
+### ✔ Step 2:
+
+```java
+for (int i = 3; i * i <= n; i += 2)
+```
+
+**Why i += 2?**
+We skip even numbers → they can never be prime except 2.
+
+**Why i * i <= n?**
+If a number has a factor larger than √n,
+the matching pair must be smaller than √n.
+So checking only up to √n is enough.
+
+This reduces time hugely.
+
+---
+
+### ✔ Step 3:
+
+```java
+if (n > 2) print n;
+```
+
+**Why?**
+Because after dividing all smaller primes, if something remains,
+it must be a prime number.
+
+Example for 24:
+We end with `n = 3` → print 3.
+
+---
+
+# ⭐ Final Summary
+
+| Step                   | Why we do it                              |
+| ---------------------- | ----------------------------------------- |
+| Remove all 2’s         | Reduce work, handle only even prime first |
+| Check odd numbers only | Skip unnecessary even checks              |
+| Check up to √n         | Mathematically enough to find factors     |
+| Print remaining n      | If leftover > 2, it's prime               |
+
+---
+
+If you want, I can also explain using a **flow diagram**, or show the **trace (dry run)** for any number you choose!
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        // Check divisibility from 2 to sqrt(n)
+        for (int p = 2; p * p <= n; p++) {
+            while (n % p == 0) {
+                System.out.println(p);
+                n /= p; // remove the factor
+            }
+        }
+
+        // If remaining n is > 1, it is prime
+        if (n > 1) {
+            System.out.println(n);
+        }
+    }
+}
 
