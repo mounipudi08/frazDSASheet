@@ -215,3 +215,121 @@ public class Main {
 		System.out.println(rev == n);
 	}
 }
+
+7)Write a C++ program to find power of a number using for loop. 
+base = 2
+exponent = 5
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Declare variables for base, exponent, and power
+        int base, exponent;
+        long power = 1;
+
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Input base and exponent from the user
+        // System.out.println("Enter base:");
+        base = scanner.nextInt();
+        // System.out.println("Enter exponent:");
+        exponent = scanner.nextInt();
+
+        // Multiply base by itself exponent times
+        for (int i = 1; i <= exponent; i++) {
+            power *= base;
+        }
+
+        // Display the result
+        System.out.println(base + " ^ " + exponent + " = " + power);
+
+        // Close the scanner to free up resources
+        scanner.close();
+    }
+}
+
+8)Write a C++ program to print Fibonacci series up to n terms using loop. 
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int a = 0;
+		int b = 1;
+	    System.out.println(a);
+		System.out.println(b);
+		while(n-2 > 0){
+         int c = a+b;
+		 System.out.println(c + " ");
+		 a = b;
+		 b = c;
+		 n--;
+		}
+	}
+}
+
+9)Write a Program to input a number from user and find all factors of the given number using for loop.
+import java.util.*;
+public class Main {
+	public static int squareroot(int n){
+		int near = 0;
+        for(int i=1;i<=n;i++){
+			if(i*i == n){
+				return i;
+			}
+			else if(i*i < n) {
+				near = i;
+			}
+		}
+		return near;
+	}
+	public static void main(String[] args) {
+		// write your code here
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int square = squareroot(n);
+		int count = 0;
+		for(int i=1;i<=square;i++){
+		 if(n%i == 0){
+			if(i*i == n){
+             count++;
+		   }
+           else{
+			  System.out.println(i);
+			  count=count+2;
+		   }
+			}
+		}
+		System.out.println(count);
+	}
+}
+
+Approach:2 
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int square = (int) Math.sqrt(n);  // using inbuilt function
+        int count = 0;
+
+        for (int i = 1; i <= square; i++) {
+            if (n % i == 0) {
+
+                if (i == n / i) {
+                    // Perfect square divisor
+                    count += 1;
+                } else {
+                    // Pair divisors: i and n/i
+                    count += 2;
+                }
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+
