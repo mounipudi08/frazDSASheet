@@ -707,7 +707,7 @@ public class Main {
 		System.out.println(hcf(a,b));	
 	}
 }
-Write a C++ program to input two numbers from the user and find HCF (Highest Common Factor) / GCD (Greatest Common Divisor).
+15)Write a C++ program to input two numbers from the user and find HCF (Highest Common Factor) / GCD (Greatest Common Divisor).
 Input number1: 12
 Input number2: 30
 HCF is 6
@@ -780,7 +780,7 @@ public class Main {
         scanner.close();
     }
 }
-ARmstrong number
+16)ARmstrong number
 what is my approach means , just every digit take the exponent of number length and add it to sum
 use pow function to mutliply that 
 import java.util.*;
@@ -803,4 +803,430 @@ public class Main {
         System.out.println(sum);
 	}
 }
+
+17)Write a C++ program to input a number and check whether the number is a Perfect number or not.
+just what i am thinking means 6 --> iterate from 1 to less than 6  --> i am checking it is is factor or not --> 
+if sum = sum + n/i;
+1+2+3 = 6 is a perfect number
+28 = 1,4,7,14,28
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt();
+	  int sum = 0;
+	  for(int i=2;i<n;i++){
+		if(n%i == 0) {
+		sum = sum + n/i;
+		}
+	  }
+	  System.out.println(sum + 1);
+	}
+}
+Perfect 👍
+Let’s **prove clearly with an example where your logic FAILS**, not just works by chance.
+
+---
+
+## 🔴 Your logic (simplified)
+
+```java
+for (int i = 2; i < n; i++) {
+    if (n % i == 0) {
+        sum = sum + (n / i);
+    }
+}
+System.out.println(sum + 1);
+```
+
+You are:
+
+* checking `i` is a factor ✔️
+* but **adding `n / i` instead of `i`** ❌
+* finally adding `+1` manually
+
+---
+
+## ✅ Case where it *seems* to work (by coincidence)
+
+### Example: **n = 6**
+
+Factors of 6:
+
+```
+1, 2, 3
+```
+
+Loop execution:
+
+| i | n % i | added (n/i) |
+| - | ----- | ----------- |
+| 2 | 0     | 3           |
+| 3 | 0     | 2           |
+
+`sum = 3 + 2 = 5`
+Then `+1` → **6** ✔️
+
+👉 This works **only because (2,3) are paired divisors**
+
+---
+
+## ❌ Case where it FAILS
+
+### 🔥 Example: **n = 16**
+
+Correct proper divisors of 16:
+
+```
+1, 2, 4, 8
+Sum = 15
+```
+
+### Your loop:
+
+| i | n % i | added (n/i) |
+| - | ----- | ----------- |
+| 2 | 0     | 8           |
+| 4 | 0     | 4           |
+| 8 | 0     | 2           |
+
+`sum = 8 + 4 + 2 = 14`
+Then `+1` → **15**
+
+😲 Still correct??
+
+Now watch **WHY THIS IS DANGEROUS**
+
+---
+
+## ❌ Real failure case: **Perfect square double counting**
+
+### Example: **n = 36**
+
+Proper divisors:
+
+```
+1, 2, 3, 4, 6, 9, 12, 18
+Sum = 55
+```
+
+### Your loop:
+
+| i  | n % i | added (n/i) |
+| -- | ----- | ----------- |
+| 2  | 0     | 18          |
+| 3  | 0     | 12          |
+| 4  | 0     | 9           |
+| 6  | 0     | 6 ❌         |
+| 9  | 0     | 4           |
+| 12 | 0     | 3           |
+| 18 | 0     | 2           |
+
+Here is the **bug** 👇
+
+* For `i = 6`, you add `36/6 = 6`
+* **Same divisor counted once, but logic breaks symmetry**
+
+This logic **depends on coincidence**, not correctness.
+
+---
+
+## ❌ Big logical problem
+
+Your code:
+
+* never explicitly adds `i`
+* assumes `n/i` will always cover all divisors correctly
+* **breaks clarity and correctness**
+* fails badly if modified slightly or optimized
+
+---
+
+## ✅ Correct thinking (THIS is what interviewers want)
+
+### Rule:
+
+> If `i` divides `n`, then **`i` is the divisor** — add `i`.
+
+### Clean correct version:
+
+```java
+int sum = 0;
+for (int i = 1; i <= n / 2; i++) {
+    if (n % i == 0) {
+        sum += i;
+    }
+}
+```
+
+---
+
+## 🧠 Final takeaway (important)
+
+* Your logic **sometimes works accidentally**
+* Accidental correctness ❌ = **wrong logic**
+* Always add the **actual divisor (`i`)**
+* Use `n/i` only when handling divisor pairs **carefully**
+
+If you want, next I can:
+
+* convert your version to a **correct √n optimized version**
+* explain **why 1 must always be included**
+* show **abundant / deficient numbers**
+
+Just say 👍
+
+
+import java.util.*;
+public class Main {
+	public static boolean perfectNumber(int n) {
+	 if(n == 1){
+		return false;
+	 }
+	 int sum = 1;
+	  for(int i=2;i*i<=n;i++){
+		if(n%i == 0) {
+		sum = sum + i;
+		 if(i != n/i) {
+			sum = sum + n/i;
+		 }
+		}
+	  }
+	  return n==sum;
+	}
+	public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt();
+	  System.out.println(perfectNumber(n));
+}
+}
+✔ Time complexity — O(√n)
+✔ Space complexity — O(1)
+18)Write a C++ program to input a number from the user and check whether the given number is a strong number or not.
+Enter the number: 145
+Output
+145 is STRONG NUMBER
+Approach
+To solve this question, we will first see what is a strong number. When we see this term for the first time we don't know what it means. At least I did not know.
+
+What is a Strong Number?
+
+A strong number is a special number whose sum of factorial of digits is equal to the original number.
+For example: 145 is a strong number. Since, 1! + 4! + 5! = 145
+
+import java.util.*;
+public class Main {
+	public static int factorial(int n){
+		int fact = 1;
+		for(int i=1;i<=n;i++){
+			fact = fact * i;
+		}
+      return fact;
+	}
+	public static boolean strongNumber(int n) {
+	   int sum = 0;
+	   int copy = n ;
+	   while(n > 0) {
+		int p = n % 10;
+		sum = sum + factorial(p);
+		n = n/10;
+	   }
+      return copy == sum;
+	}
+	public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt();
+	  System.out.println(strongNumber(n));
+}
+}
+Let’s analyze the **time and space complexity** of your **Strong Number** program step-by-step.
+
+---
+
+## 🔹 Code recap (logic)
+
+* Extract each digit of the number
+* Compute factorial of each digit
+* Add them and compare with original number
+
+---
+
+## ⏱️ Time Complexity
+
+Let:
+
+* **d** = number of digits in `n`
+
+### 1️⃣ While loop (digit extraction)
+
+```java
+while (n > 0) { ... }
+```
+
+Runs **d times** → **O(d)**
+
+---
+
+### 2️⃣ Factorial computation
+
+```java
+factorial(p)
+```
+
+* `p` is a digit (0–9)
+* Max loop runs **9 times**
+* Constant time → **O(1)**
+
+---
+
+### 🔸 Total Time Complexity
+
+```
+O(d × 1) = O(d)
+```
+
+✔ Since digits grow as `log₁₀(n)`:
+
+### ✅ Final Time Complexity:
+
+```
+O(log n)
+```
+
+---
+
+## 💾 Space Complexity
+
+* Only a few integer variables
+* No extra data structures
+
+### ✅ Space Complexity:
+
+```
+O(1)
+```
+
+---
+
+## 🔹 With optimization (optional)
+
+If you **precompute factorials of digits 0–9**:
+
+* Time complexity **still O(log n)**
+* But faster in practice (no repeated factorial loops)
+
+---
+
+## 🧠 One-line exam answer
+
+> Time complexity of Strong Number program is **O(log n)** and space complexity is **O(1)**.
+
+If you want, I can also:
+
+* Compare complexity with **Armstrong Number**
+* Optimize factorial using array
+* Write code to print all strong numbers in a range
+
+Just tell me 😊
+
+19)Problem 2: Hollow Square Star Pattern
+Write a C++ program to print a hollow square star(*) pattern series of N rows.
+
+Write a C++ program to print a square star(*) pattern series of N rows.
+
+Input
+Input number of rows: 5
+Output
+*****
+*****
+*****
+*****
+*****
+Approach
+Look at the pattern for some time. What is coming to your mind??
+import java.util.*;
+public class Main {
+	public static void factorial(int n){
+	Scanner sc = new Scanner(System.in);
+	for(int i=1;i<=n;i++){
+		for(int j=1;j<=n;j++) {
+		System.out.print("*");
+		}
+		System.out.println();
+	}
+   }
+   public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt(); 
+      factorial(5);
+   }
+}
+Problem 2: Hollow Square Star Pattern
+Write a C++ program to print a hollow square star(*) pattern series of N rows.
+*****
+*   *
+*   *
+*   *
+*****
+import java.util.*;
+public class Main {
+	public static void pattern(int n){
+	   for(int i=1;i<=n;i++){
+		for(int j=1;j<=n;j++) {
+		 if( i == 1 || i == n || j == 1 || j == n){
+              System.out.print("*");
+			 }
+			 else {
+				 System.out.print(" ");
+			 }
+		 }
+		 System.out.println();
+	   }
+	}
+
+   public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt(); 
+      pattern(5);
+   }
+}
+
+
+Write a C++ program to print a hollow square star pattern with diagonals.
+
+Input
+Enter number of rows: 5
+Output
+*****
+** **
+* * *
+** **
+*****
+
+Approach
+Notice the pattern and try to find the similarity between this pattern and the hollow square pattern. What do you think?? Isn't it similar to the pattern of problem 2? The above pattern is a simple hollow square star pattern if we remove the diagonal. This time we just have 2 extra diagonals. Are we on the same page??
+import java.util.*;
+public class Main {
+	public static void pattern(int n){
+	   for(int i=1;i<=n;i++){
+		for(int j=1;j<=n;j++) {
+		 if( i == 1 || i == n || j == 1 || j == n  || i== j || j == n-i+1){
+              System.out.print("*");
+			 }
+			 else {
+				 System.out.print(" ");
+			 }
+		 }
+		 System.out.println();
+	   }
+	}
+
+   public static void main(String[] args) {
+	  Scanner sc = new Scanner(System.in);
+	  int n = sc.nextInt(); 
+      pattern(5);
+   }
+}
+
+
 
