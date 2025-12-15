@@ -1192,7 +1192,7 @@ public class Main {
 }
 
 
-Write a C++ program to print a hollow square star pattern with diagonals.
+20)Write a C++ program to print a hollow square star pattern with diagonals.
 
 Input
 Enter number of rows: 5
@@ -1227,6 +1227,715 @@ public class Main {
       pattern(5);
    }
 }
+21) Rhombus Star Pattern
+Write a C++ program to print a rhombus star pattern of N rows.
+
+Input
+Enter number of rows: 5
+Output
+    *****
+   *****
+  *****
+ *****
+*****
+Approach
+Notice the pattern. Can we correlate this pattern with the pattern of problem 1?? I guess yes we can. The only difference which we can find is in terms of space. If we remove the starting spaces from every row, the pattern will become a square pattern.
+
+Intuition
+
+Have a close look at the pattern. Place your mouse cursor on to the pattern, to count spaces. Try to decode the logic of given pattern.
+
+If we remove leading spaces the pattern becomes a simple square star pattern of N rows and columns. We only need to add logic of printing spaces with the existing logic of square star pattern. How many spaces are there in each row?? Try to figure that out as we will need to print that number of spaces first then stars.
+
+For N=5 as given the output pattern
+
+Row 1: 4 spaces // N-row number=?
+
+Row 2: 3 spaces // N-row number=?
+
+Row 3: 2 spaces // N-row number=?
+
+Row 4: 1 spaces // N-row number=?
+
+Row 5 : 0 spaces // N-row number=?
+
+The pattern consists of N - i spaces per row (where i is the current row number).
+
+ Try it out yourself here!
+
+Explanation/Steps
+import java.util.Scanner;
+
+public class StarPattern {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through each row
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j <= N - i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars after spaces
+            for (j = 1; j <= N; j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+22)
+Mirrored Rhombus Star Pattern
+Write a C++ program to print the inverted/mirrored rhombus star pattern of N rows.
+
+Input
+Enter number of rows: 5
+Output
+*****
+ *****
+  *****
+   *****
+    *****
+Approach
+Have you gone through the 4th problem??5th problem and the 4th problem are brothers.😅I mean patterns are mirror images of each other. Notice the pattern carefully. We just need to find the relationship between row number and number of spaces. Rest it is similar to 4th problem. Please give it a try guys without looking at the solution. I am very confident that you will be able to arrive at the solution if you have gone through the concept of above problems.🙌
+
+Intuition
+
+Have a close look at the pattern. Place your mouse cursor on to the pattern, to count spaces. Try to decode the logic of given pattern.
+
+We only need to change the logic of printing spaces with the existing logic of rhombus star pattern(4th problem). How many spaces are there in each row?? Try to figure that out as we will need to print that number of spaces first then stars.
+
+For N=5 as given the output pattern
+
+Row 1 : 0 spaces // current row number-1=?(1-1=0)
+
+Row 2: 1 spaces // current row number-1=?(2-1=1)
+
+Row 3 : 2 spaces // current row number-1=?(3-1=2)
+
+Row 4 : 3 spaces // current row number-1=?(4-1=3)
+
+Row 5 : 4 spaces // current row number-1=?(5-1=4)
+
+current row number-1 = Number of spaces in the current row
+
+ If you have noticed there are i - 1 spaces per row (where i is current row number). 
+
+Now give it a try !!
+
+ Try it out yourself here
+
+import java.util.Scanner;
+
+public class StarPattern {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through each row
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars after spaces
+            for (j = 1; j <= N; j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+23)Right Triangle Star Pattern
+Write a C++ program to print right triangle star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+*
+**
+***
+****
+*****
+Approach
+Look at the pattern for some time. What is coming to your mind??
+
+Intuition
+
+If you look at the pattern carefully you will find that stars are in increasing order of rows.
+
+Row 1: *
+
+Row 2:**
+
+Row 3:***
+
+Row 4:****
+
+Row 5:*****
+
+Noticed something?? Number of stars in a row is same as current row number.
+
+Ask yourself: Iterate through N rows, and for each row how many columns will you iterate?
+
+Hint: Iterate through N rows, and for each row iterate for i ( i is current row number) columns.
+
+Now give it a try !!
+
+Try it out yourself here!
+
+import java.util.Scanner;
+
+public class StarPattern {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input total number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through each row
+        for (i = 1; i <= N; i++) {
+            // Print i number of stars
+            for (j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+24)Hollow Right Triangle Star Pattern
+Write a C++ program to print hollow right triangle star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+*
+**
+* *
+*  *
+*****
+Approach
+Notice the pattern. What do you think?? Isn't it similar to the pattern of problem 1? This time we just have the border of the triangle. Help me in defining "border". This time we just have the stars only for first and last row or first and last column of the pattern of problem 1. Are we on the same page??
+
+Intuition
+
+If you notice carefully, you will find that the logic to print a hollow right triangle is almost similar to right triangle star pattern(problem 1) logic. Just with this pattern you need to print stars only for first and last column or row.
+
+ If we relate to the first problem, we can say that we will need two for loops. One outer loop to iterate over each row and one inner loop to iterate over each column(The inner loop iterates for i times where i is current row number). But this time there will be some changes in inner loop as the star is printed only for specific cases(star is printed only for first or last column or for first or last row).
+
+We basically need to print two things "*"(asterisks) and " "(space). Think of conditions. When you will print what? Print star for first column(j==1), first row(i==1), last column(j==i) or last row(i==N) otherwise print space. Do we need (i==1) compulsorily? No, We can remove that if we want because (j==1) would cater to that condition as well. Why condition for last column is j==i ??Dry run on an example and you are good to go.
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class StarPattern {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through N rows
+        for (i = 1; i <= N; i++) {
+
+            // Iterate through each column
+            for (j = 1; j <= i; j++) {
+                /*
+                 * Print star for:
+                 * - first column (j == 1)
+                 * - first row (i == 1)
+                 * - last column (j == i)
+                 * - last row (i == N)
+                 */
+                if (i == 1 || j == 1 || j == i || i == N) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+25) Mirrored Right Triangle Star Pattern
+Write a C++ program to print mirrored right triangle star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+    *
+   **
+  ***
+ ****
+*****
+Approach
+Have you gone through the first problem?? The pattern of this problem and the first problem are mirror images of each other. Notice the pattern carefully. We just need to find the relationship between row number and number of spaces in that row. Please give it a try guys without looking at the solution. I am very confident that you will be able to arrive at the solution.🙌
+
+Intuition
+
+Have a close look at the pattern. Place your mouse cursor on to the pattern, to count spaces. Try to decode the logic of given pattern. We only need to change the logic of printing spaces with the existing logic of the right triangle star pattern(1st problem). How many spaces are there in each row?? Try to figure that out as we will need to print that number of spaces first then stars.
+
+For N=5 as given the output pattern
+
+Row 1 : 4 spaces // N-current row number=?(5-1=4)
+
+Row 2: 3 spaces // N-current row number=?(5-2=3)
+
+Row 3 : 2 spaces // N-current row number=?(5-3=2)
+
+Row 4 : 1 spaces // N-current row number=?(5-4=1)
+
+Row 5 : 0 spaces // N-current row number=?(5-5=0)
+
+N - current row number = Number of spaces in the current row
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class StarPattern {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        // System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j <= N - i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars after spaces
+            for (j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+27)Hollow Mirrored Right Triangle Star Pattern
+Write a C++ program to print hollow mirrored right triangle star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+    *
+   **
+  * *
+ *  *
+*****
+Approach
+Notice the pattern. What do you think?? Isn't it similar to the pattern of problem 3? This time we just have the border of the mirrored right triangle star pattern. The above pattern is almost similar to mirrored right triangle star pattern(problem 3) with stars printed only for first or last column and for first or last row. Is it getting difficult ??😵‍💫🥹If yes please take a small break.
+
+Don't you think this is the mix of problem 2(hollow right triangle star pattern) and problem 3(mirrored right triangle star pattern)?? Once go through both these problems then Give it a shot !!
+
+Intuition
+
+The above pattern is similar to mirrored right triangle star pattern with stars printed only for first or last column and for first or last row. (If you remember 🙂 we had a similar condition in problem 2 as well where stars were printed only for first or last column and for first or last row)
+
+We will iterate through N rows. For each row, First, we will print the leading spaces and then we can use logic of hollow right triangle star pattern(problem 2). And then we will get our pattern. Make sense or not?? I hope yes✌️.
+
+Now please give it a try !! If you get the solution by just reading the intuition. Congratulations🥳🫡. Otherwise, definitely, we can refer to the solution.
+
+ Try it out yourself here!
+
+Guys, for this problem I would strongly suggest even if you are referring to the solution please use your pen and paper and dry run each step with an example. Trust me it will be much more clear if you are facing difficulty at any step.
+
+Expla
+import java.util.Scanner;
+
+public class HollowRightTriangle {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = i; j < N; j++) {
+                System.out.print(" ");
+            }
+
+            // Print hollow right triangle
+            for (j = 1; j <= i; j++) {
+                /*
+                 * Print star for:
+                 * - first row (i == 1),
+                 * - last row (i == N),
+                 * - first column (j == 1),
+                 * - last column (j == i)
+                 */
+                if (i == 1 || i == N || j == 1 || j == i) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+28)Inverted Right Triangle Star Pattern
+Write a C++ program to print inverted right triangle star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+*****
+****
+***
+**
+*
+Approach
+This will be our last question for this exercise. I am confident this question will be a piece of cake for you if you have gone through the above questions. Can we correlate this problem with problem 1?? Try it once without looking at the solution🙂
+
+Intuition
+
+If you look at the pattern carefully you will find that stars are in increasing order of rows.
+
+For N=5(where N is the total number of rows or input)
+
+Row 1 : ***** -> N stars = N-1+1 stars
+
+Row 2 :**** ->N-1 stars = N-2+1 stars
+
+Row 3 :*** ->N-2 stars = N-3+1 stars
+
+Row 4 :** ->N-3 stars = N-4+1 stars
+
+Row 5 :* ->N-4 stars = N-5+1 stars
+
+Noticed something? Number of stars in a row = N - current row number +1.
+
+Ask yourself: Iterate through N rows, and for each row how many columns will you iterate?
+
+Hint: Iterate through N rows, and for each row iterate for N-i+1 columns(i is current row number).
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class LeftAlignedTriangle {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        // System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Iterate through columns
+            for (j = 1; j <= N - i + 1; j++) {
+                System.out.print("*");
+            }
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+Pyramid Star Pattern
+Write a C++ program to print Pyramid star( equilateral triangle ) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+    *
+   ***
+  *****
+ *******
+*********
+Before you read further have a close look at the above pattern. And note down your observations.
+Pattern consists of N (for this case 5) rows. Each row contains 2*i-1(where i is the current row number) stars. In addition to stars, the pattern has leading spaces. Each row contains some spaces. To count total spaces per row point your mouse over the above pattern. How many leading spaces are there in each row?? Try to figure that out as we will need to print that number of spaces first then stars.
+
+For N=5 as given the output pattern
+
+Row 1: 4 spaces // N-current row number=?(5-1=4)
+
+Row 2: 3 spaces // N-current row number=?(5-2=3)
+
+Row 3: 2 spaces // N-current row number=?(5-3=2)
+
+Row 4: 1 spaces // N-current row number=?(5-4=1)
+
+Row 5: 0 spaces // N-current row number=?(5-5=0)
+
+N - current row number = Number of spaces in the current row
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class StarPyramid {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j <= N - i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (j = 1; j <= (2 * i - 1); j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+Hollow Pyramid Star Pattern
+Write a C++ program to print hollow pyramid star pattern (*) pattern of N rows.
+
+Input
+Input number of rows: 5
+Output
+    *
+   * *
+  *   *
+ *     *
+*********
+Approach
+Notice the pattern. What do you think?? Isn't it similar to the pattern of problem 1? This time we just have the border of the pyramid. Help me in defining "border". This time we just have the stars only for first and last row or first and last column of the pattern of problem 1. Can we give it a shot now??
+
+Intuition
+
+If you notice carefully, you will find that the logic to print a hollow pyramid is almost similar to the pyramid star pattern(problem 1) logic. Just with this pattern you need to print stars only for the first column, last column, first row and last row.
+
+ If we relate to the first problem, in addition to stars, the pattern had leading spaces before the stars in each row. Each row contains some leading spaces. To count the total leading spaces per row point your mouse over the above pattern. How many leading spaces are there in each row?? There are N-i( i is the current row number) leading spaces. (We have already found this in Intuition of problem 1).
+
+Iterate over N rows and first print leading spaces in every row. How will you print leading spaces? Hint: Use a for loop 
+
+After printing the leading spaces, now start with the logic to print hollow pyramid. At max, there can be (2*i-1) stars in row. We basically need to print two things "*"(asterisks) and " "(space) now. Think of conditions. When you will print what? Print star for the first column(j==1), first row(i==1), last column(j==2*i-1) or last row(i==N) otherwise print space. Do we need (i==1) compulsorily? No, We can remove that if we want because (j==1) would cater to that condition as well.
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class HollowPyramid {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+        //System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j <= N - i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print hollow pyramid
+            for (j = 1; j <= (2 * i - 1); j++) {
+                // Print stars for the first row, last row, and edges of the pyramid
+                if (i == 1 || i == N || j == 1 || j == (2 * i - 1)) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close scanner resource
+        scanner.close();
+    }
+}
+
+ Inverted Pyramid Star Pattern
+Write a C++ program to print inverted Pyramid star pattern for N rows.
+
+Input
+Input number of rows: 5
+Output
+*********
+ *******
+  *****
+   ***
+    *  
+Approach
+Have you gone through the first problem?? The pattern of this problem and the first problem are the water images of each other. Notice the pattern carefully. Please give it a try guys without looking at the solution. The approach is similar to problem 1. I am very confident that you will be able to solve it on your own.🙌
+Pattern consists of N (for this case 5) rows. 
+
+To solve this question, we essentially need to find two things :
+
+1)Relationship between current row number and leading spaces in that row
+
+2)Relationship between current row number and number of stars in that row
+
+Take out your pen and paper and try to find out the above two things.
+
+The pattern consists of leading spaces. Each row contains i – 1 leading space (where i is the current row number).
+
+Each row has exactly 2 * N - (2 * i - 1) stars.
+
+Now give it a try !!
+import java.util.Scanner;
+
+public class InvertedHollowPyramid {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+       // System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print stars
+            for (j = 1; j <= (2 * N - (2 * i - 1)); j++) {
+                System.out.print("*");
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close the scanner resource
+        scanner.close();
+    }
+}
+
+Hollow Inverted Pyramid Star Pattern
+Write a C++ program to print hollow inverted Pyramid star pattern for N rows.
+
+Input
+Input number of rows: 5
+Output
+*********
+ *     *
+  *   *
+   * *
+    *
+Approach
+Notice the pattern. What do you think?? Isn't it similar to the pattern of problem 3? This time we just have the border of the inverted pyramid star pattern. The above pattern is almost similar to the inverted pyramid star pattern(problem 3) with stars printed only for first or last column and for first or
+last row. Is it getting too difficult ??😵‍💫🥹If yes please take a small break and then come back.
+The above pattern is similar to inverted pyramid star pattern with stars printed only for first or last column and for first or last row.(If you remember 🙂 we had a similar condition in problem 2 as well where stars were printed only for first or last column and for first or last row)
+
+We will iterate through N rows. For each row, First, we will print the leading spaces and then we can use logic of hollow pyramid star pattern(problem 2). And then we will get our pattern. Make sense or not?? I hope yes✌️.
+
+Now please give it a try !! If you get the solution by just reading the intuition. Congratulations🥳🫡. Otherwise, definitely, we can refer to the solution.
+
+
+Don't you think this is the mix of problem 2(hollow pyramid star pattern) and problem 3( inverted pyramid star pattern)?? Once go through both these problems then Give it a shot !! It will also help you in analysing the understanding of those problems and implementing those concepts.
+
+import java.util.Scanner;
+
+public class HollowPyramid {
+    public static void main(String[] args) {
+        int i, j, N; // i --> rows, j --> columns, N --> total rows
+
+        // Input number of rows from the user
+        Scanner scanner = new Scanner(System.in);
+       // System.out.print("Enter number of rows: ");
+        N = scanner.nextInt();
+
+        // Iterate through rows
+        for (i = 1; i <= N; i++) {
+            // Print leading spaces
+            for (j = 1; j < i; j++) {
+                System.out.print(" ");
+            }
+
+            // Print hollow pyramid
+            for (j = 1; j <= (2 * N - (2 * i - 1)); j++) {
+                // Print stars for the first row, last row, and the edges of the pyramid
+                if (i == 1 || i == N || j == 1 || j == (2 * N - (2 * i - 1))) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+
+            // Move to the next line after each row
+            System.out.println();
+        }
+
+        // Close the scanner resource
+        scanner.close();
+    }
+}
+
 
 
 
