@@ -1693,7 +1693,7 @@ public class LeftAlignedTriangle {
         scanner.close();
     }
 }
-Pyramid Star Pattern
+29)Pyramid Star Pattern
 Write a C++ program to print Pyramid star( equilateral triangle ) pattern of N rows.
 
 Input
@@ -1754,7 +1754,7 @@ public class StarPyramid {
     }
 }
 
-Hollow Pyramid Star Pattern
+30)Hollow Pyramid Star Pattern
 Write a C++ program to print hollow pyramid star pattern (*) pattern of N rows.
 
 Input
@@ -1816,7 +1816,7 @@ public class HollowPyramid {
     }
 }
 
- Inverted Pyramid Star Pattern
+31) Inverted Pyramid Star Pattern
 Write a C++ program to print inverted Pyramid star pattern for N rows.
 
 Input
@@ -1877,7 +1877,7 @@ public class InvertedHollowPyramid {
 }
 
 Hollow Inverted Pyramid Star Pattern
-Write a C++ program to print hollow inverted Pyramid star pattern for N rows.
+32)Write a C++ program to print hollow inverted Pyramid star pattern for N rows.
 
 Input
 Input number of rows: 5
@@ -1935,6 +1935,83 @@ public class HollowPyramid {
         scanner.close();
     }
 }
+ Diamond Star Pattern
+Write a C++ program to print diamond star pattern for N rows.
+
+Input
+Input number of rows: 5
+
+33) Diamond Star Pattern
+Write a C++ program to print diamond star pattern for N rows.
+
+Input
+Input number of rows: 5
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *
+Approach
+Before you read further have a close look at the above pattern. And note down your observations. Try to solve it on your own as we covered the concept in previous articles.🙂
+
+Intuition
+
+The given pattern is a combination of pyramid star pattern and inverted pyramid star pattern. It consists of 2*N-1 rows (for this case N=5). Each row contains spaces and stars printed in increasing and decreasing order.
+
+Stars are printed in increasing order till the Nth row. After Nth row stars are printed in decreasing order.
+
+Spaces are printed in decreasing order till the Nth row. After the Nth row spaces are printed in increasing order. Point your mouse cursor over the pattern to count total spaces.
+
+Now give it a try guys we have already solved various problems on similar lines in previous articles. I am very confident you will be able to solve it.😀
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int i, j, N;
+    int stars, spaces;
+   
+    // Input number of rows from user 
+    cout<<"Enter number of rows to print: "<<endl;
+    cin>>N;
+    
+    
+    stars = 1;
+    spaces = N - 1;
+    
+    /* Iterate through rows */
+    for(i=1; i<2*N; i++)
+    {
+        /* Print spaces */
+        for(j=1; j<=spaces; j++)
+            cout<<" ";
+        
+        /* Print stars */
+        for(j=1; j<stars*2; j++)
+            cout<<"*";
+        
+        /* Move to next line */
+        cout<<endl;
+        
+        if(i<N)
+        {
+            spaces--;
+            stars++;
+        }
+        else
+        {
+            spaces++;
+            stars--;
+        }
+    }
+    
+    return 0;
+}
+
 
 
 
