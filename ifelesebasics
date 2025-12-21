@@ -2738,6 +2738,563 @@ import java.util.*;
 O(rows*cols) 
 O(1)
 
+42)Print box number pattern of 1 and 0 with cross center
+ Input rows and cols can only be odd for the pattern to be printed correctly.
+rows = 5
+cols = 5
+
+10001
+01010
+00100
+01010
+10001
+
+Intuition
+
+Observation: In the given pattern 1 is printed according to row numbers
+For 1st row: in first and last column 
+For 2nd row: in second and second last column 
+For 3rd row: in third and third last column 
+For 4th row: in fourth and fourth last column 
+For 5th row: in fifth and fifth last column 
+
+If we generalise this pattern then 1 is printed only when:
+
+Current column is equal to the current row.
+Current column equals (total columns + 1) – current row.
+Hence we need to apply the same condition inside our inner loop that checks the current column value. If it's equal to any of the above 2 values i.e. current row OR (total columns + 1) – current row, then we print 1 else 0
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++){
+        for(int j=1;j<=columns;j++){
+            if(i == j || j == ((columns+1)-i)){
+                System.out.print("1");
+            }
+            else {
+                 System.out.print("0");
+            }
+        }
+        System.out.println();
+    }
+	}
+}
+
+
+⏱ Complexity
+
+Time: O(rows × columns)
+
+Space: O(1)
+
+
+43)Print circle box number pattern with 1 and 0
+Finally, we have reached to the last problem of this article. Tired or enthusiasm is just the same as in the first problem? Don't worry guys, this problem would be a cakewalk for you if you solved the previous ones! Let's see what's the pattern for this.
+
+Input
+
+rows = 5
+cols = 5
+
+01110
+10001
+10001
+10001
+01110
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++){
+        for(int j=1;j<=columns;j++){
+          if((i == 1 || i == rows) && (j == 1||  j == columns))  {
+              System.out.print("0");
+          }
+          else if(i==1 || i == rows || j == 1 || j == rows) {
+              System.out.print("1");
+          }
+          else {
+               System.out.print("0");
+          }
+    }
+    System.out.println();
+	}
+	}
+}
+⏱ Complexity
+
+Time: O(rows × columns)
+
+Space: O(1)
+
+
+44)Numeric Square Patterns
+In the last article, we practiced square patterns only by using 0s and 1s but now let's play with more numbers. Patterns would be same, user would input the no. of of rows and columns but now the pattern would be using a range of numbers and you would be writing the codes for the same.
+
+So get ready coders! Here comes the problems..
+Pattern 1
+Input
+rows = 5
+cols = 5
+11111
+22222
+33333
+44444
+55555
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++){
+        for(int j = 1;j<=columns;j++){
+            System.out.print(i);
+        }
+        System.out.println();
+    }
+	}
+}
+
+⏱ Complexity
+
+Time: O(rows × columns)
+
+Space: O(1)
+
+45)Pattern 2
+Input
+rows = 5
+cols = 5
+Output
+12345
+12345
+12345
+12345
+12345
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++){
+        for(int j = 1;j<=columns;j++){
+            System.out.print(j);
+        }
+        System.out.println();
+    }
+	}
+}
+
+
+Time & Space Complexity
+
+Time Complexity: O(rows × columns)
+
+Space Complexity: O(1) (no extra space used)
+
+46)rows = 5
+cols = 5
+
+12345
+23456
+34567
+45678
+56789
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++){
+        // int j = i;
+        // while(count <= columns){
+        //     System.out.print(j);
+        //     j = j + 1;
+        //     count = count + 1;
+        // }
+        // for(int count = 1;count <= columns; count++){
+        //     System.out.print(j);
+        //     j = j + 1;
+        // }
+         for(int j = i;j < i+columns; j++){
+            System.out.print(j);
+        }
+        System.out.println();
+    }
+	}
+}
+Complexity
+
+Time Complexity: O(rows × columns)
+
+Space Complexity: O(1)
+
+47)rows = 5
+cols = 5
+
+1  2  3  4  5
+6  7  8  9 10
+11 12 13 14 15
+16 17 18 19 20
+21 22 23 24 25
+
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    int k = 1;
+    for(int i=1;i<=rows;i++) {
+         for(int j = 1;j <=columns; j++,k++){
+            System.out.print(k+ " ");
+        }
+        System.out.println();
+    }
+	}
+}
+Final Answer
+
+Time: O(rows × columns)
+
+Space: O(1)
+
+48)Pattern 5
+Input
+rows = 5
+cols = 5
+
+Output
+55555
+54444
+54333
+54322
+54321
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++) {
+        for(int j=columns;j>columns-i;j--) {
+            System.out.print(j);
+        }
+        for(int j=1;j<=columns-i;j++){
+            System.out.print(rows-i+1);
+        }
+        	System.out.println();
+	} 
+
+}
+}
+This pattern if observed carefully can be divided into two parts:
+
+5----
+54---
+543--
+5432-
+54321
+
+-5555
+--444
+---33
+----2
+-----
+
+This indicates that there need to be 2 inner loops for each pattern inside one outer loop. The results of both the inner loops when combined will give us the desired final output.
+
+To iterate through rows, we'll use a similar loop from 1 to rows as we used in our previous problems but need to break the columns.
+
+Pattern 1: To print first part of pattern, we are printing the columns value in a decreasing fashion. 
+For row 1: We start from 5 and print all values that are greater than 4. 
+For row 2: We start from 5 and print all values that are greater than 3.
+For row 3: We start from 5 and print all values that are greater than 2.
+and so on.
+
+What we observe here is that we are starting from the total columns value (5) and goes till 5-current_row. This indicates that we need to run a loop from 5 to 5-current_row or in generic terms: from cols to cols-current_row.
+
+Pattern 2: Carefully observe the value that's printed and its frequency. 
+Row 1: Value = 5 Frequency = 4
+Row 2: Value = 4 Frequency = 3
+Row 3: Value = 3 Frequency = 2
+and so on.
+
+Decoding the pattern, value to be printed is equal to current row from the opposite end ( last row value for first row, 2nd last row value for 2nd row etc.) 
+This value is nothing but, total rows - current row +1. 
+For the frequency, it's equal to total columns - current row. 
+
+Hence we need to run the loop from (1 to total columns - current_row) and print (total rows - current row +1).
+
+Logic
+
+To iterate through rows, run an outer loop from 1 to rows (where rows is total rows to be printed).
+Pattern 1: Run an inner loop on j starting from total columns going till total columns – current_row. In this example, total columns value is 5. Inside this loop keep printing the value of j.
+Pattern 2: Run another inner loop from 1 to total columns – current_row. Inside this loop print the value of rows – current row + 1.
+Sol
+
+
+Yes 👍 — **this is a correct and valid approach** for the pattern you’re targeting.
+
+Let’s **verify it carefully**, explain **why it works**, and check **complexity**.
+
+---
+
+## 🎯 Pattern you’re generating
+
+For `rows = cols = 5`, output becomes:
+
+```
+55555
+54444
+54333
+54322
+54321
+```
+
+✔️ This matches the expected pattern.
+
+---
+
+## 🔍 Step-by-step explanation
+
+### Outer loop
+
+```cpp
+for (i = 1; i <= rows; i++)
+```
+
+* Controls **rows**
+* Each iteration prints **one line**
+
+---
+
+## 🔁 Inner Loop 1 (descending numbers)
+
+```cpp
+for (j = cols; j > cols - i; j--) {
+    cout << j;
+}
+```
+
+### What this does
+
+* Prints decreasing numbers starting from `cols`
+* Runs `i` times
+
+#### Example:
+
+| i | Output |
+| - | ------ |
+| 1 | 5      |
+| 2 | 54     |
+| 3 | 543    |
+| 4 | 5432   |
+| 5 | 54321  |
+
+✔️ Correct left part
+
+---
+
+## 🔁 Inner Loop 2 (constant numbers)
+
+```cpp
+for (j = 1; j <= cols - i; j++) {
+    cout << rows - i + 1;
+}
+```
+
+### What this does
+
+* Prints remaining numbers in the row
+* Uses constant value: `rows - i + 1`
+
+#### Example:
+
+| i | Value printed | Count |
+| - | ------------- | ----- |
+| 1 | 5             | 4     |
+| 2 | 4             | 3     |
+| 3 | 3             | 2     |
+| 4 | 2             | 1     |
+| 5 | 1             | 0     |
+
+✔️ Correct right-fill
+
+---
+
+## 🧠 Why this approach is GOOD
+
+✔ Clear separation of pattern logic
+✔ Easy to debug
+✔ No complex conditions
+✔ Beginner-friendly
+✔ Works for any `rows = cols`
+
+This is a **very clean approach** 👍
+
+---
+
+## ⏱ Time & Space Complexity
+
+### Time Complexity
+
+* Outer loop → `rows`
+* Total prints per row → `cols`
+
+```
+O(rows × cols)
+```
+
+### Space Complexity
+
+```
+O(1)
+```
+
+---
+
+## ⭐ Comparison with other approaches
+
+| Approach                   | Readability | Flexibility |
+| -------------------------- | ----------- | ----------- |
+| `max()` based              | Medium      | High        |
+| Your **two-loop approach** | ⭐⭐⭐⭐        | ⭐⭐⭐         |
+
+👉 Your solution is **perfect for learning and exams**.
+
+---
+
+### ✅ Final Verdict
+
+**YES**, this is a **correct and recommended approach** ✔️
+You’re thinking in the **right direction** — keep going 💪
+
+If you want, I can:
+
+* Convert this to **Java**
+* Show **dry run table**
+* Give a **variation question** for practice
+
+rows = 5
+cols = 5
+
+49)55555
+44445
+33345
+22345
+12345
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int rows = sc.nextInt();
+    int columns = sc.nextInt();
+    for(int i=1;i<=rows;i++) {
+        for(int j= rows-i+1;j>1;j--) {
+            System.out.print(rows-i+1);
+        }
+        for(int j=rows-i+1;j<=columns;j++){
+            System.out.print(j);
+        }
+        	System.out.println();
+	} 
+
+}
+}
+by reversing
+for(int i = rows; i >= 1; i--) {
+    for(int j = 1; j <= i - 1; j++) {
+        System.out.print(i);
+    }
+    for(int j = i; j <= columns; j++){
+        System.out.print(j);
+    }
+    System.out.println();
+}
+
+Pattern Division
+
+This pattern if observed carefully can be divided into two parts:
+
+5555-
+444--
+33---
+2----
+-----
+
+----5
+---45
+--345
+-2345
+12345
+
+Relating to the last problem, we need 2 inner loops for each pattern inside one outer loop. The results of both the inner loops when combined will give us the desired final output.
+
+Outer loop
+
+For the outer loop, we need to observe that the pattern seems decreasing in our first pattern, and so we need to compare the current rows to the opposite ones (print 5 for first, 4 for second, 3 for third etc.) 
+There's a trick that I use to escape from this first-last analogy but promise me you'll keep it secret🤫
+
+An active person like you would suggest run a loop from 1 to rows and print total rows - current row + 1. But a lazy person like me would simply run a loop from rows to 1 and print the current_row value. (It would be automatically reversed🤭)
+
+Same thing we are going to do in this and in many upcoming articles. We would run our loop from 5 to 1 (rows to 1) so that we can simply print the current row rather than total rows - current row + 1. Remember that the other way is also right but this one will will simplify our variables.
+
+Note: In this question, current_row reference means the opposite row only (i.e like 5, 4, 3, 2, 1) and not the actual current_row (1,2,3,4,5) due to the decreasing loop
+
+Inner loop 1
+
+Focusing on the value's frequency in first question, it's decreasing (4->3->2->1: i decreases with increasing row). This pattern when generalised is nothing but current_row - 1. Hence, we would run a loop from 1 to current_row - 1. Also, the printed value in first pattern is 5,4,3,2,1 i.e. the current_row's value. Hence, we would print current_row's value and 'current_row - 1' times.
+
+Inner loop 2
+
+In the 2nd pattern, we are directly printing the column's value. The range of this value clearly ends at the last row. But where does it start? 
+
+We print from 5th column in 1st row
+from 4th column in 2nd row
+from 3rd column in 3rd row
+and so on.
+
+The starting column is nothing but the 'current_row' of this pattern. Hence, the loop will run from current_row to cols and prints the column value.
+
+NOTE: Notice that how much the change in our outer loop (from rows to 1) has simplified our code in both the patterns. In other words, emphasise on the direct usage of current_row variable: we have directly used it multiple times without needing to change it as in the case of increasing outer loop (from 1 to rows).
+
+Logic
+
+To iterate through rows, run an outer loop on i from rows to 1 (where rows is total rows to be printed).
+Pattern 1: Run an inner loop on j from 1 to i-1 printing the i value. 
+Note: Value to be printed is i as i's value is decreasing with every row as required by the pattern. This is the reason that we made our outer loop from rows to 1 rather than 1 to rows.
+Pattern 2: Run an inner loop on j starting from i to the total no. of columns and keep printing the jth value. 
+SolutionTry on compiler
+#in
+
+
+
+
+
 
 
 
