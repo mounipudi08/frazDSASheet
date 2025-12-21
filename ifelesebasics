@@ -2086,5 +2086,659 @@ Time Complexity: O(n²)
 
 Space Complexity: O(1)
 
+*       *
+ *     *
+  *   *
+   * *
+    *
+   * *
+  *   *
+ *     *
+*       *
+36)import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	 Scanner sc = new Scanner(System.in);
+	 int n = sc.nextInt();
+	 for(int i=1;i<2*n;i++){
+	     for(int j=1;j<2*n;j++){
+	        if(i == j || j == 2*n -i){
+	            System.out.print("*");
+	        }
+	        else {
+	            System.out.print(" ");
+	        }
+	    } 
+	    System.out.println();
+	 }
+	}
+}
+⏱️ Time & Space Complexity
+
+Time Complexity: O(n²)
+Space Complexity: O(1) (no extra space used)
+
+for Readability
+int size = 2*n - 1;
+for(int i = 1; i <= size; i++){
+    for(int j = 1; j <= size; j++){
+        if(i == j || j == size - i + 1)
+            System.out.print("*");
+        else
+            System.out.print(" ");
+    }
+    System.out.println();
+}
+37)Write a C++ program to print 8 star pattern of N rows.
+Input number of columns: 5
+ ***
+*   *
+*   *
+*   *
+ ***
+*   *
+*   *
+*   *
+ ***
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int i, j, N; // i--> rows , j-->columns , N-->size
+
+    // Input total number of rows from user 
+    cout<<"Enter size: "<<endl;
+    cin>>N;
+
+    for(i=1; i<N*2; i++)
+    {
+        for(j=1; j<=N; j++)
+        {
+            // Condition for corner and center intersection space
+            if((i==1 && (j==1 || j==N)) || 
+               (i==N && (j==1 || j==N)) || 
+               (i==N*2-1 && (j==1 || j==N)))
+            {
+                cout<<" ";
+            }
+            else if(i==1 || i==N || i==(N*2)-1 || j==1 || j==N)
+            {
+                cout<<"*";
+            }
+            else
+            {
+                cout<<" ";
+            }
+        }
+
+        cout<<endl;
+    }
+
+    return 0;
+}
+Got it 👍
+Let me explain this **very clearly and slowly**, without jumping steps.
+
+---
+
+## 1️⃣ What is the goal of this program?
+
+This program prints **three hollow rectangles (or boxes) stacked vertically**.
+
+* Width of each box = `N`
+* Height of each box = `1` row (top, middle, bottom borders)
+* Total rows printed = `2*N - 1`
+
+For **N = 5**, output looks like:
+
+```
+ ***
+*   *
+*   *
+*   *
+ ***
+*   *
+*   *
+*   *
+ ***
+```
+
+---
+
+## 2️⃣ Understanding the loops
+
+### 🔹 Outer loop (rows)
+
+```cpp
+for(i = 1; i < N*2; i++)
+```
+
+* Runs from `1` to `2*N - 1`
+* So total rows = `2*N - 1`
+
+Important rows:
+
+* `i == 1` → top border
+* `i == N` → middle border
+* `i == 2*N - 1` → bottom border
+
+These three rows form the **horizontal lines** of the boxes.
+
+---
+
+### 🔹 Inner loop (columns)
+
+```cpp
+for(j = 1; j <= N; j++)
+```
+
+* Prints exactly `N` characters per row
+* `j == 1` → first column
+* `j == N` → last column
+
+These columns form the **vertical borders**.
+
+---
+
+## 3️⃣ First `if` condition (corner spaces)
+
+```cpp
+if ((i==1 && (j==1 || j==N)) ||
+    (i==N && (j==1 || j==N)) ||
+    (i==N*2-1 && (j==1 || j==N)))
+{
+    cout << " ";
+}
+```
+
+### ❓ What does this mean?
+
+This checks **corners of the top, middle, and bottom borders**.
+
+Rows checked:
+
+* `i == 1`
+* `i == N`
+* `i == 2*N - 1`
+
+Columns checked:
+
+* `j == 1` (left corner)
+* `j == N` (right corner)
+
+### ✅ Why print space here?
+
+Look at the top row:
+
+```
+ ***
+```
+
+* First and last positions must be **spaces**
+* Otherwise it becomes a filled rectangle
+
+So this condition **removes stars from the corners**.
+
+---
+
+## 4️⃣ Second condition (print borders)
+
+```cpp
+else if (i==1 || i==N || i==(N*2)-1 || j==1 || j==N)
+{
+    cout << "*";
+}
+```
+
+### ❓ What does this do?
+
+Prints `*` when:
+
+* Row is a border (`1`, `N`, `2N-1`)
+* OR column is a border (`1` or `N`)
+
+This creates:
+
+* Top border
+* Middle border
+* Bottom border
+* Left side wall
+* Right side wall
+
+Together → **hollow box outline**
+
+---
+
+## 5️⃣ Last `else` (inside space)
+
+```cpp
+else
+{
+    cout << " ";
+}
+```
+
+This runs when:
+
+* Not a border
+* Not a corner
+
+So it prints **spaces inside the box**.
+
+That’s what makes the box **hollow**.
+
+---
+
+## 6️⃣ Example walkthrough (N = 5)
+
+### Row 1 (`i = 1`)
+
+* Corners → space
+* Middle → stars
+
+Output:
+
+```
+ ***
+```
+
+---
+
+### Row 2–4 (`i = 2,3,4`)
+
+* `j == 1` or `j == 5` → `*`
+* Middle → space
+
+Output:
+
+```
+*   *
+```
+
+---
+
+### Row 5 (`i = N`)
+
+Same as row 1:
+
+```
+ ***
+```
+
+---
+
+### Row 9 (`i = 2*N - 1`)
+
+Again same:
+
+```
+ ***
+```
+
+---
+
+## 7️⃣ Time Complexity
+
+* Outer loop → `O(N)`
+* Inner loop → `O(N)`
+* Total complexity → **`O(N²)`**
+
+---
+
+## 🔑 Final understanding
+
+* **Outer loop** → controls rows
+* **Inner loop** → controls columns
+* **First if** → removes corner stars
+* **Second if** → draws borders
+* **Else** → fills empty space
+
+---
+
+If you want, next I can:
+
+* rewrite this with **simpler logic**
+* show how to **design such patterns step-by-step**
+* convert it to **Java clean version**
+
+Just tell 👍
+else if (i==1 || i==N || i==(N*2)-1 || j==1 || j==N)
+{
+    cout << "*";
+}
+we have to print space know in if block we printing the same
+
+Very good question 👍
+This confusion is **very common** when learning pattern logic.
+Let’s clear it **cleanly and logically**.
+
+---
+
+## 🔴 Your confusion
+
+You’re asking:
+
+> **“In the `if` block we already print space,
+> then in `else if` we are again covering the same rows (`i==1`, `i==N`, `i==2N-1`).
+> Why are we printing `*` again?”**
+
+✅ This is **intentional** and **correct**.
+
+---
+
+## 🔑 Key idea you must remember
+
+### ❗ `if – else if` works in ORDER
+
+Once an `if` condition is true, **Java/C++ never checks the `else if`**.
+
+---
+
+## 🔍 Let’s see the exact logic
+
+### Code:
+
+```cpp
+if ((i==1 && (j==1 || j==N)) ||
+    (i==N && (j==1 || j==N)) ||
+    (i==2*N-1 && (j==1 || j==N)))
+{
+    cout << " ";
+}
+else if (i==1 || i==N || i==(2*N-1) || j==1 || j==N)
+{
+    cout << "*";
+}
+else
+{
+    cout << " ";
+}
+```
+
+---
+
+## 🧠 Why this is written like this
+
+### Step 1️⃣ Handle **special corner cases first**
+
+These positions:
+
+* `(1,1) , (1,N)`
+* `(N,1) , (N,N)`
+* `(2N-1,1) , (2N-1,N)`
+
+📌 These are **corners** → they must be **spaces**, not stars
+
+So we **catch them first**.
+
+---
+
+### Step 2️⃣ Handle general border stars
+
+Now for all **other border positions**:
+
+* Top row → `i == 1`
+* Middle row → `i == N`
+* Bottom row → `i == 2N-1`
+* Left wall → `j == 1`
+* Right wall → `j == N`
+
+These should be `*`.
+
+But ⚠️ **corners are already removed above**, so no conflict.
+
+---
+
+## 📌 Example (N = 5)
+
+Let’s check **row 1, column 1** `(i=1, j=1)`:
+
+* First `if` → ✅ TRUE → prints `" "`
+* `else if` → ❌ NOT checked
+
+Correct output:
+
+```
+ ***
+```
+
+---
+
+### Now check `(i=1, j=3)`:
+
+* First `if` → ❌ false
+* Second `else if` → ✅ true → prints `"*"`
+
+Correct.
+
+---
+
+### Check `(i=3, j=1)`:
+
+* First `if` → ❌ false
+* Second `else if` → ✅ true → prints `"*"`
+
+Correct vertical wall.
+
+---
+
+## 🔁 Why not remove `i==1` from else-if?
+
+Because:
+
+* You **still want stars** in row `i==1`
+* Except at **corners**, which are already handled
+
+---
+
+## 🧠 Mental model (VERY IMPORTANT)
+
+Think like this:
+
+> 🔹 **First remove exceptions (corners)**
+> 🔹 **Then draw general borders**
+> 🔹 **Else → empty space**
+
+This is a **standard pattern-design technique**.
+
+---
+
+## ✅ Final conclusion
+
+✔ Yes, both conditions mention `i==1`, `i==N`, etc.
+✔ But **order matters**
+✔ Corners are filtered FIRST
+✔ Remaining borders are stars
+✔ Inside is space
+
+---
+
+--> Number Patterns
+
+38)Write a program to print 0s and 1s at alternate rows.
+Input
+
+rows = 6
+cols = 5
+
+11111
+00000
+11111
+00000
+11111
+00000
+
+import java.util.*;
+   public class Main
+   {
+	public static void main(String[] args) {
+	 Scanner sc = new Scanner(System.in);
+	 int n = sc.nextInt();
+	 for(int i=1;i<=n;i++){
+	     for(int j =1;j<=n;j++){
+	         if(i%2 == 1){
+	           System.out.print("1");   
+	         }
+	         else {
+	             System.out.print("0");     
+	         }
+	     }
+	     System.out.println();
+     }
+}
+}
+
+39)Print 1, 0 number pattern at alternate columns
+Write a program to print 0s and 1s at alternate columns.
+
+Input
+
+rows = 6
+cols = 5
+Output
+
+01010
+01010
+01010
+01010
+01010
+01010
+
+import java.util.*;
+   public class Main
+   {
+	public static void main(String[] args) {
+	 Scanner sc = new Scanner(System.in);
+	 int n = sc.nextInt();
+	 for(int i=1;i<=n;i++){
+	     for(int j =1;j<=n;j++){
+	         if(j%2 == 1){
+	           System.out.print("0");   
+	         }
+	         else {
+	             System.out.print("1");     
+	         }
+	     }
+	     System.out.println();
+     }
+}
+}
+
+ Print box number pattern of 1s and 0s
+Input
+
+rows = 6
+cols = 5
+Output
+
+40)
+11111
+10001
+10001
+10001
+10001
+11111
+
+
+import java.util.*;
+   public class Main
+   {
+	public static void main(String[] args) {
+	 Scanner sc = new Scanner(System.in);
+	 int rows = sc.nextInt();
+	 int columns = sc.nextInt();
+	 for(int i=1;i<=rows;i++){
+	     for(int j = 1; j<=columns;j++){
+	         if(i == 1 || i == rows || j == 1 || j == columns){
+	            System.out.print("1"); 
+	         }
+	         else {
+	            System.out.print("0");  
+	         }
+	     }
+	     System.out.println();
+	 }
+   }
+}
+
+
+
+
+Time & Space Complexity
+
+Time Complexity:
+
+O(rows×columns)
+
+Space Complexity:
+
+𝑂(1)
+
+
+(No extra memory used)
+
+41)Pattern 4: Print chessboard number pattern with 1 and 0
+Input
+
+rows = 5
+cols = 5
+Output
+
+10101
+01010
+10101
+01010
+10101
+Intuition
+
+Try to think the above pattern as a matrix where 1 and 0 is printed at every alternate element. Hence we need to track the alternate positions and print the value accordingly. Now the question arises that how can we track this? 
+
+To keep track of alternate element, we will use an extra variable k. k will have 2 values and k's value will decide that what we should print. 
+
+Let's say k can have two possible values i.e. -1 and 1. For k = 1, we'll print 1 otherwise print 0. Hence initially k value would be 1 so we'll print 1. Since we need to print alternate elements, we'll change the value of to -1. Next time, when we check the value of k, it'll be -1 and so we'll print 0. We'll again change k's value and repeat this step after printing pattern's value everytime.
+
+Logic
+
+Input number of rows and columns to print from user. Store it in some variable say rows and cols.
+Initialize a variable to keep track of alternate element, say k = 1.
+To iterate through rows run an outer loop from 1 to rows. 
+To iterate through columns run an inner loop from 1 to cols. 
+Inside the inner loop print 1, 0 for alternate elements. Say if(k == 1) then print 1 otherwise 0. After printing change the value of k = k * -1.
+Note: Multiplying 1 with -1 gives -1 and -1 with -1 gives 1. You can remember this as a short trick for flipping values rather than applying if else condition : )
+Finally, move to next line after printing all columns of a row.
+Sol
+import java.util.*;
+   public class Main
+   {
+	public static void main(String[] args) {
+	 Scanner sc = new Scanner(System.in);
+	 int rows = sc.nextInt();
+	 int cols = sc.nextInt();
+	 int k = 1;
+	 for(int i=1;i<=rows;i++){
+	     for(int j=1; j <= cols;j++){
+	         if(k == 1){
+	             System.out.print("1");
+	         }
+	         else {
+	             System.out.print("0");
+	         }
+	         k = k*-1;
+	     }
+	     System.out.println();
+	     if(cols % 2 == 0){
+	         k = k*-1;
+	     }
+	 }
+	 
+   }
+}
+O(rows*cols) 
+O(1)
+
+
+
 
 
